@@ -11,8 +11,9 @@
   },
   "keywords": [
     "ecosystem:cordova",
-    "cordova-ios"
+    "cordova-ios",
+    "cordova-android"
   ],
-  "author": "",
-  "license": "ISC"
+  "author": "Kuama s.r.l.s.",
+  "license": "GPL"
 }
