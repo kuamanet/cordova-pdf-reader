@@ -1,0 +1,6 @@
+.idea/
+.DS_Store
+package.json
+plugin.xml
+src/
+www/

@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="net-kuama-plugins-pdfreader" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>PdfReader</name>
+    <js-module name="PdfReader" src="www/PdfReader.js">
+        <clobbers target="KPdfReader"/>
+    </js-module>
+
+    <dependency id="cordova-plugin-add-swift-support"
+                url="https://github.com/akofman/cordova-plugin-add-swift-support"
+                commit="1a5cb44802fd55a6305cc6b15b05f3da29bcd9eb"
+    />
+    <dependency id="cordova-plugin-cocoapod-support"
+                url="https://github.com/blakgeek/cordova-plugin-cocoapods-support"
+    />
+
+    <platform name="android">
+        <!-- custom dependencies -->
+        <framework src="src/android/plugin.gradle" custom="true" type="gradleReference"/>
+
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="PdfReader">
+                <param name="android-package" value="net.kuama.pdf.PdfReader"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+
+            <activity
+                    android:name="net.kuama.pdf.viewer.OutlineActivity"
+                    android:configChanges="orientation|screenSize|keyboardHidden"/>
+            <activity
+                    android:name="net.kuama.pdf.PdfActivity"
+                    android:theme="@style/AppTheme.NoActionBar"/>
+        </config-file>
+
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <!-- plugin bridge -->
+        <source-file src="src/android/PdfReader.java" target-dir="src/net/kuama/pdf"/>
+
+        <!-- pdf renderer activity -->
+        <source-file src="src/android/PdfActivity.java" target-dir="src/net/kuama/pdf"/>
+
+        <!-- deps from the mupdf android sample app -->
+        <source-file src="src/android/viewer/CancellableAsyncTask.java" target-dir="src/net/kuama/pdf/viewer"/>
+        <source-file src="src/android/viewer/CancellableTaskDefinition.java" target-dir="src/net/kuama/pdf/viewer"/>
+        <source-file src="src/android/viewer/MuPDFCancellableTaskDefinition.java"
+                     target-dir="src/net/kuama/pdf/viewer"/>
+        <source-file src="src/android/viewer/MuPDFCore.java" target-dir="src/net/kuama/pdf/viewer"/>
+        <source-file src="src/android/viewer/OutlineActivity.java" target-dir="src/net/kuama/pdf/viewer"/>
+        <source-file src="src/android/viewer/PageAdapter.java" target-dir="src/net/kuama/pdf/viewer"/>
+        <source-file src="src/android/viewer/PageView.java" target-dir="src/net/kuama/pdf/viewer"/>
+        <source-file src="src/android/viewer/ReaderView.java" target-dir="src/net/kuama/pdf/viewer"/>
+        <source-file src="src/android/viewer/SearchTask.java" target-dir="src/net/kuama/pdf/viewer"/>
+        <source-file src="src/android/viewer/SearchTaskResult.java" target-dir="src/net/kuama/pdf/viewer"/>
+        <source-file src="src/android/viewer/Stepper.java" target-dir="src/net/kuama/pdf/viewer"/>
+
+        <!-- layout files -->
+        <source-file src="src/android/res/layout/content_pdf.xml" target-dir="res/layout"/>
+        <source-file src="src/android/res/layout/document_activity.xml" target-dir="res/layout"/>
+
+        <!-- drawables -->
+        <source-file src="src/android/res/drawable/button.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/ic_chevron_left_white_24dp.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/ic_chevron_right_white_24dp.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/ic_close_white_24dp.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/ic_link_white_24dp.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/ic_search_white_24dp.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/ic_toc_white_24dp.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/page_indicator.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/seek_line.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/res/drawable/seek_thumb.xml" target-dir="res/drawable"/>
+
+        <config-file target="res/values/strings.xml" parent="/resources">
+            <string name="cancel">Annulla</string>
+            <string name="cannot_open_document">Impossibile aprire il documento</string>
+            <string name="cannot_open_document_Reason">Impossibile aprire il documento: %1$s</string>
+            <string name="dismiss">Chiudi</string>
+            <string name="enter_password">Inserire password</string>
+            <string name="no_further_occurrences_found">Non sono presenti altre occorrenze</string>
+            <string name="not_supported">Non supportato</string>
+            <string name="okay">Ok</string>
+            <string name="search">Cerca&#x2026;</string>
+            <string name="searching_">Cercando&#x2026;</string>
+            <string name="text_not_found">Testo non trovato</string>
+        </config-file>
+
+        <source-file src="src/android/res/values/colors.xml" target-dir="res/values"/>
+        <source-file src="src/android/res/values/dimens.xml" target-dir="res/values"/>
+        <source-file src="src/android/res/values/styles.xml" target-dir="res/values"/>
+
+    </platform>
+
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="PdfReader">
+                <param name="ios-package" value="PdfReader"/>
+            </feature>
+            <preference name="UseSwiftLanguageVersion" value="4.2"/>
+            <preference name="pods_ios_min_version" value="9.0"/>
+            <pod name="SnapKit"/>
+        </config-file>
+
+
+        <source-file src="src/ios/MaterialView.swift"/>
+        <source-file src="src/ios/NonSelectablePdfView.swift"/>
+        <source-file src="src/ios/PdfReaderPlugin.swift"/>
+        <source-file src="src/ios/WatermarkPage.swift"/>
+        <source-file src="src/ios/PdfReader.swift"/>
+
+        <source-file src="src/ios/baseline_arrow_back_black_24pt.png"/>
+        <source-file src="src/ios/baseline_arrow_back_black_24pt@2x.png"/>
+        <source-file src="src/ios/baseline_arrow_back_black_24pt@3x.png"/>
+
+        <source-file src="src/ios/baseline_keyboard_arrow_left_black_24pt.png"/>
+        <source-file src="src/ios/baseline_keyboard_arrow_left_black_24pt@2x.png"/>
+        <source-file src="src/ios/baseline_keyboard_arrow_left_black_24pt@3x.png"/>
+
+        <source-file src="src/ios/baseline_keyboard_arrow_right_black_24pt.png"/>
+        <source-file src="src/ios/baseline_keyboard_arrow_right_black_24pt@2x.png"/>
+        <source-file src="src/ios/baseline_keyboard_arrow_right_black_24pt@3x.png"/>
+
+        <source-file src="src/ios/baseline_search_white_24pt.png"/>
+        <source-file src="src/ios/baseline_search_white_24pt@2x.png"/>
+        <source-file src="src/ios/baseline_search_white_24pt@3x.png"/>
+    </platform>
+
+
+</plugin>
