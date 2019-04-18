@@ -1,7 +1,7 @@
 {
   "name": "net-kuama-plugins-pdfreader",
   "version": "0.0.1",
-  "description": "",
+  "description": "Cordova bridge for iOS PdfKit and android muPDF",
   "cordova": {
     "id": "net-kuama-plugins-pdfreader",
     "platforms": [
@@ -15,5 +15,13 @@
     "cordova-android"
   ],
   "author": "Kuama s.r.l.s.",
-  "license": "GPL"
+  "license": "GPL",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuamanet/cordova-pdf-reader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kuamanet/cordova-pdf-reader/issues"
+  },
+  "homepage": "https://github.com/kuamanet/cordova-pdf-reader#readme"
 }

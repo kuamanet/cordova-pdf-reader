@@ -16,6 +16,8 @@ import org.json.JSONException;
 public class PdfReader extends CordovaPlugin {
 
     public static String BASE_64_DATA;
+    public static int PDF_RESULT;
+    private CallbackContext mCallbackContext;
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
@@ -24,7 +26,7 @@ public class PdfReader extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
         Context context = cordova.getActivity().getApplicationContext();
-
+        mCallbackContext = callbackContext;
         if (action.equals("fromBase64")) {
             Intent intent = new Intent(context, PdfActivity.class);
             try {
@@ -35,10 +37,10 @@ public class PdfReader extends CordovaPlugin {
                 if (args.length() > 2) {
                     intent.putExtra(PdfActivity.Extras.activity_title, args.get(3).toString());
                 }
+                cordova.setActivityResultCallback (this);
+                cordova.getActivity().startActivityForResult(intent, PDF_RESULT);
 
-                cordova.getActivity().getApplicationContext().startActivity(intent);
 
-                cordova.getThreadPool().execute(() -> callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK)));
                 return true;
             } catch (Exception e) {
                 Log.e("PDFREADER", e.getMessage());
@@ -50,10 +52,11 @@ public class PdfReader extends CordovaPlugin {
         return false;
     }
 
-    private void openNewActivity(Context context) {
-        Intent intent = new Intent(context, PdfActivity.class);
-        intent.putExtra(PdfActivity.Extras.base_64_pdf, "");
-        intent.putExtra(PdfActivity.Extras.watermark_extra, "");
-        this.cordova.getActivity().startActivity(intent);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == PDF_RESULT) {
+            cordova.getThreadPool().execute(() -> mCallbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK)));
+        }
     }
 }

@@ -541,7 +541,10 @@ public class PdfActivity extends AppCompatActivity {
         int backButtonIdentifier = getResources().getIdentifier("id/backButton", null, getPackageName());
         ImageButton backBtn = mButtonsView.findViewById(backButtonIdentifier);
 
-        backBtn.setOnClickListener(v -> onBackPressed());
+        backBtn.setOnClickListener(v -> {
+            setResult(RESULT_OK);
+            finish();
+        });
 
         int docNameTextIdentifier = getResources().getIdentifier("id/docNameText", null, getPackageName());
         mFilenameView = mButtonsView.findViewById(docNameTextIdentifier);
