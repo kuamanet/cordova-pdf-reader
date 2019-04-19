@@ -47,7 +47,7 @@ var app = {
                 KPdfReader.fromBase64(
                     res.rawData, // the base 64 pdf
                     {
-                        watermark: "Daniele De Matteo",
+                        watermark: "A nice watermark",
                         fileName: "Test file pdf" // the title of the pdf
                     },
                 )
