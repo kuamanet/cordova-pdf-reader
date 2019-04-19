@@ -10,9 +10,11 @@
     ]
   },
   "keywords": [
-    "ecosystem:cordova",
     "cordova-ios",
-    "cordova-android"
+    "cordova-android",
+    "render pdf",
+    "search pdf",
+    "watermark pdf"
   ],
   "author": "Kuama s.r.l.s.",
   "license": "GPL",
