@@ -75,4 +75,7 @@ app.initialize();
 
 ```
 
-### Preview
+### Screens
+
+![Alt text](previews/first.png?raw=true "First load")
+![Alt text](previews/search.png?raw=true "Search")
