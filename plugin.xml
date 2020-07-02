@@ -1,18 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="net-kuama-plugins-pdfreader" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+<plugin id="net-kuama-plugins-pdfreader" version="0.0.3" xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>PdfReader</name>
     <js-module name="PdfReader" src="www/PdfReader.js">
         <clobbers target="KPdfReader"/>
     </js-module>
 
-    <dependency id="cordova-plugin-add-swift-support"
-                url="https://github.com/akofman/cordova-plugin-add-swift-support"
-                commit="1a5cb44802fd55a6305cc6b15b05f3da29bcd9eb"
-    />
-    <dependency id="cordova-plugin-cocoapod-support"
-                url="https://github.com/blakgeek/cordova-plugin-cocoapods-support"
-    />
+    <engines>
+        <engine name="cordova" version=">=9.0.0" />
+        <engine name="cordova-android" version=">=8.1.0" />
+        <engine name="cordova-ios" version=">=5.1.1" />
+    </engines>
 
     <platform name="android">
         <!-- custom dependencies -->
@@ -97,9 +95,6 @@
             <feature name="PdfReader">
                 <param name="ios-package" value="PdfReader"/>
             </feature>
-            <preference name="UseSwiftLanguageVersion" value="4.2"/>
-            <preference name="pods_ios_min_version" value="9.0"/>
-            <pod name="SnapKit"/>
         </config-file>
 
 
@@ -124,6 +119,15 @@
         <source-file src="src/ios/baseline_search_white_24pt.png"/>
         <source-file src="src/ios/baseline_search_white_24pt@2x.png"/>
         <source-file src="src/ios/baseline_search_white_24pt@3x.png"/>
+
+        <podspec>
+            <config>
+                <source url="https://github.com/CocoaPods/Specs.git"/>
+            </config>
+            <pods use-frameworks="true">
+                <pod name="SnapKit" spec="5.0.0"/>
+            </pods>
+        </podspec>
     </platform>
 
 
