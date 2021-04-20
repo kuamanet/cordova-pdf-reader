@@ -1,8 +1,8 @@
 var exec = require('cordova/exec');
 
-let renderSuccessCallback, renderErrorCallback;
+var renderSuccessCallback, renderErrorCallback;
 
-const api = {
+var api = {
   then: callback => {
     renderSuccessCallback = callback;
     return api;
