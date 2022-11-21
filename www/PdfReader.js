@@ -1,13 +1,13 @@
 var exec = require('cordova/exec');
 
-let renderSuccessCallback, renderErrorCallback;
+var renderSuccessCallback, renderErrorCallback;
 
-const api = {
-  then: callback => {
+var api = {
+  then: function(callback) {
     renderSuccessCallback = callback;
     return api;
   },
-  catch: callback => {
+  catch: function(callback) {
     renderErrorCallback = callback;
     return api;
   }
@@ -21,11 +21,11 @@ const api = {
  */
 exports.fromBase64 = function (base64PDF, options) {
   exec(
-    args => {
+    function(args) {
       if (renderSuccessCallback) {
         renderSuccessCallback(args);
       }
-    }, errors => {
+    }, function(errors) {
       if (renderErrorCallback) {
         renderErrorCallback(errors);
       }
