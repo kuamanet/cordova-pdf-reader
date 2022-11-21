@@ -1,12 +1,11 @@
 repositories {
-    jcenter()
-    maven { url 'http://maven.ghostscript.com' }
+    jcenter() // needed to resolve mupdf
+    maven { url 'https://maven.ghostscript.com' } // needed to resolve androidwm-light
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:design:28.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
     implementation 'com.huangyz0918:androidwm-light:0.1.2'
 
     api 'com.artifex.mupdf:fitz:1.14.0'
