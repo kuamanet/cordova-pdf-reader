@@ -75,7 +75,30 @@ app.initialize();
 
 ```
 
-### Screens
+## Screens
 
 ![Alt text](previews/first.png?raw=true "First load")
 ![Alt text](previews/search.png?raw=true "Search")
+
+## Android usage
+
+You will need to add some color definitions to your android project (if using cordova < 11, create a file named `colors.xml` inside `platforms/android/app/src/res/values`)
+```xml
+<color name="colorPrimary">#008577</color>
+<color name="colorPrimaryDark">#00574B</color>
+<color name="colorAccent">#D81B60</color>
+<color name="page_indicator">#C0202020</color>
+<color name="toolbar">#C0202020</color>
+```
+
+If you do not have a `colors.xml` file, this is a full example
+```xml
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="page_indicator">#C0202020</color>
+    <color name="toolbar">#C0202020</color>
+</resources>
+```
