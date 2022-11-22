@@ -82,7 +82,7 @@ app.initialize();
 
 ## Android usage
 
-You will need to add some color definitions to your android project (if using cordova < 11, create a file named `colors.xml` inside `platforms/android/app/src/res/values`)
+You will need to add some color definitions to your android project (if using cordova < 11, create a file named `colors.xml` inside `platforms/android/app/src/main/res/values`)
 ```xml
 <color name="colorPrimary">#008577</color>
 <color name="colorPrimaryDark">#00574B</color>
